@@ -1,1 +1,4 @@
-add_executable(starter main.cpp)
+add_executable(axe_game main.cpp)
+target_link_libraries(axe_game
+        PUBLIC
+        CONAN_PKG::raylib)
