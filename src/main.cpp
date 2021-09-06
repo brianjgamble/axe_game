@@ -1,12 +1,17 @@
 #include <raylib.h>
 
 int main() {
-    int width{350};
-    int height{200};
+    int width{800};
+    int height{450};
     InitWindow(width, height, "First Window!");
 
-    int circle_x{175};
-    int circle_y{100};
+    int circle_x{200};
+    int circle_y{200};
+
+    int axe_x{400};
+    int axe_y{};
+
+    int direction{10};
 
     SetTargetFPS(60);
 
@@ -15,6 +20,12 @@ int main() {
         ClearBackground(WHITE);
 
         DrawCircle(circle_x, circle_y, 25, BLUE);
+        DrawRectangle(axe_x, axe_y, 50, 50, RED);
+
+        axe_y += direction;
+        if (axe_y > height || axe_y < 0) {
+            direction = -direction;
+        }
 
         if (IsKeyDown(KEY_D) && circle_x < width) {
             circle_x += 10;
