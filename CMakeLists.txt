@@ -17,10 +17,24 @@ endif ()
 include(${CMAKE_BINARY_DIR}/conan.cmake)
 
 conan_cmake_run(REQUIRES
-        raylib/3.5.0
         catch2/2.13.7
         BASIC_SETUP CMAKE_TARGETS
         BUILD missing)
+
+# Retrieve raylib
+include(FetchContent)
+
+FetchContent_Declare(
+        RAYLIB
+        GIT_REPOSITORY "https://github.com/raysan5/raylib"
+        GIT_TAG 3.7.0
+)
+
+FetchContent_GetProperties(RAYLIB)
+if (NOT raylib_POPULATED)
+    FetchContent_Populate(RAYLIB)
+    add_subdirectory(${raylib_SOURCE_DIR} ${raylib_BINARY_DIR})
+endif ()
 
 add_subdirectory(src)
 
