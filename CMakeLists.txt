@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-project(axe_game_project VERSION 0.0.1 LANGUAGES CXX)
+project(axe_game_project VERSION 0.1.0 LANGUAGES CXX)
 
 # Require C++20 and disable extensions for all targets
 set(CMAKE_CXX_STANDARD 20)

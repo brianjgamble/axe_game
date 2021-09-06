@@ -1,34 +1,46 @@
 #include <raylib.h>
 
+class User {
+public:
+    User(int size, int x, int y) :
+        size(size), x(x), y(x) {}
+
+    int size;
+    int x;
+    int y;
+};
+
+class Axe {
+public:
+    Axe(int size, int x, int y) :
+        size(size), x(x), y(y) {}
+
+    int size;
+    int x;
+    int y;
+};
+
 int main()
 {
     int width{800};
     int height{450};
     InitWindow(width, height, "Axe Game");
 
-    int circle_x{200};
-    int circle_y{200};
-    int circle_radius{25};
-    int l_circle_x{circle_x - circle_radius};
-    int r_circle_x{circle_x + circle_radius};
-    int u_circle_y{circle_y - circle_radius};
-    int b_circle_y{circle_y + circle_radius};
+    User user{25, 200, 200};
+    int l_circle_x{};
+    int r_circle_x{};
+    int u_circle_y{};
+    int b_circle_y{};
 
-    int axe_x{400};
-    int axe_y{};
-    int axe_length{50};
-    int l_axe_x{axe_x};
-    int r_axe_x{axe_x + axe_length};
-    int u_axe_y{axe_y};
-    int b_axe_y{axe_y + axe_length};
+    Axe axe{50, 400, 0};
+    int l_axe_x{};
+    int r_axe_x{};
+    int u_axe_y{};
+    int b_axe_y{};
 
     int direction{10};
 
-    bool collision_with_axe =
-        (b_axe_y >= u_circle_y) &&
-        (u_axe_y <= b_circle_y) &&
-        (r_axe_x >= l_circle_x) &&
-        (l_axe_x <= r_circle_x);
+    bool collision_with_axe{false};
 
     SetTargetFPS(60);
 
@@ -43,14 +55,14 @@ int main()
             // Game logic begins
 
             // update the edges
-            l_circle_x = circle_x - circle_radius;
-            r_circle_x = circle_x + circle_radius;
-            u_circle_y = circle_y - circle_radius;
-            b_circle_y = circle_y + circle_radius;
-            l_axe_x = axe_x;
-            r_axe_x = axe_x + axe_length;
-            u_axe_y = axe_y;
-            b_axe_y = axe_y + axe_length;
+            l_circle_x = user.x - user.size;
+            r_circle_x = user.x + user.size;
+            u_circle_y = user.y - user.size;
+            b_circle_y = user.y + user.size;
+            l_axe_x    = axe.x;
+            r_axe_x    = axe.x + axe.size;
+            u_axe_y    = axe.y;
+            b_axe_y    = axe.y + axe.size;
 
             // update collision with axe
             collision_with_axe =
@@ -59,19 +71,19 @@ int main()
                 (r_axe_x >= l_circle_x) &&
                 (l_axe_x <= r_circle_x);
 
-            DrawCircle(circle_x, circle_y, circle_radius, BLUE);
-            DrawRectangle(axe_x, axe_y, axe_length, axe_length, RED);
+            DrawCircle(user.x, user.y, (float) user.size, BLUE);
+            DrawRectangle(axe.x, axe.y, axe.size, axe.size, RED);
 
-            axe_y += direction;
-            if (axe_y > height || axe_y < 0) {
+            axe.y += direction;
+            if (axe.y > height || axe.y < 0) {
                 direction = -direction;
             }
 
-            if (IsKeyDown(KEY_D) && circle_x < width) {
-                circle_x += 10;
+            if (IsKeyDown(KEY_D) && user.x < width) {
+                user.x += 10;
             }
-            else if (IsKeyDown(KEY_A) && circle_x > 0) {
-                circle_x -= 10;
+            else if (IsKeyDown(KEY_A) && user.x > 0) {
+                user.x -= 10;
             }
 
             // Game logic ends
