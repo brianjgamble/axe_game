@@ -1,4 +1,4 @@
-#include "user.h"
+#include "player.h"
 #include <raylib.h>
 
 class Axe {
@@ -17,7 +17,7 @@ int main()
     int height{450};
     InitWindow(width, height, "Axe Game");
 
-    User user{25, 200, 200};
+    Player player{25, 200, 200};
 
     Axe axe{50, 400, 0};
     int l_axe_x;
@@ -48,14 +48,14 @@ int main()
             b_axe_y = axe.y + axe.size;
 
             // update collision with axe
-            const Bounds& userBounds = user.getBounds();
+            const Bounds& userBounds = player.getBounds();
             collision_with_axe =
                 (b_axe_y >= userBounds.upper) &&
                 (u_axe_y <= userBounds.lower) &&
                 (r_axe_x >= userBounds.left) &&
                 (l_axe_x <= userBounds.right);
 
-            DrawCircle(user.x, user.y, (float) user.size, BLUE);
+            DrawCircle(player.x, player.y, (float) player.size, BLUE);
             DrawRectangle(axe.x, axe.y, axe.size, axe.size, RED);
 
             axe.y += direction;
@@ -63,11 +63,11 @@ int main()
                 direction = -direction;
             }
 
-            if (IsKeyDown(KEY_D) && user.isLeftOf(width)) {
-                user.moveRight(10);
+            if (IsKeyDown(KEY_D) && player.isLeftOf(width)) {
+                player.moveRight(10);
             }
-            else if (IsKeyDown(KEY_A) && user.isRightOf(0)) {
-                user.moveLeft(10);
+            else if (IsKeyDown(KEY_A) && player.isRightOf(0)) {
+                player.moveLeft(10);
             }
 
             // Game logic ends

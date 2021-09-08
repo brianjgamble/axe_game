@@ -1,6 +1,6 @@
-#include "user.h"
+#include "player.h"
 
-Bounds User::getBounds() const
+Bounds Player::getBounds() const
 {
     return Bounds{
         x - size,
@@ -9,22 +9,22 @@ Bounds User::getBounds() const
         y + size};
 }
 
-void User::moveLeft(int amount)
+void Player::moveLeft(int amount)
 {
     x -= amount;
 }
 
-void User::moveRight(int amount)
+void Player::moveRight(int amount)
 {
     x += amount;
 }
 
-bool User::isLeftOf(int pos) const
+bool Player::isLeftOf(int pos) const
 {
     return (x + size) < pos;
 }
 
-bool User::isRightOf(int pos) const
+bool Player::isRightOf(int pos) const
 {
     return (x - size) > pos;
 }

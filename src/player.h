@@ -1,11 +1,11 @@
-#ifndef AXE_GAME_PROJECT_USER_H
-#define AXE_GAME_PROJECT_USER_H
+#ifndef AXE_GAME_PROJECT_PLAYER_H
+#define AXE_GAME_PROJECT_PLAYER_H
 
 #include "bounds.h"
 
-class User {
+class Player {
 public:
-    User(int size, int x, int y) :
+    Player(int size, int x, int y) :
         size(size), x(x), y(y) {}
 
     [[nodiscard]] Bounds getBounds() const;
@@ -20,4 +20,4 @@ public:
     int y;
 };
 
-#endif//AXE_GAME_PROJECT_USER_H
+#endif//AXE_GAME_PROJECT_PLAYER_H
