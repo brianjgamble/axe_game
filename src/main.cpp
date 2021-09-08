@@ -1,5 +1,5 @@
-#include <raylib.h>
 #include "user.h"
+#include <raylib.h>
 
 class Axe {
 public:
@@ -48,12 +48,12 @@ int main()
             b_axe_y = axe.y + axe.size;
 
             // update collision with axe
-            const Bounds& user_bounds = user.getBounds();
+            const Bounds& userBounds = user.getBounds();
             collision_with_axe =
-                (b_axe_y >= user_bounds.upper) &&
-                (u_axe_y <= user_bounds.lower) &&
-                (r_axe_x >= user_bounds.left) &&
-                (l_axe_x <= user_bounds.right);
+                (b_axe_y >= userBounds.upper) &&
+                (u_axe_y <= userBounds.lower) &&
+                (r_axe_x >= userBounds.left) &&
+                (l_axe_x <= userBounds.right);
 
             DrawCircle(user.x, user.y, (float) user.size, BLUE);
             DrawRectangle(axe.x, axe.y, axe.size, axe.size, RED);
@@ -63,11 +63,11 @@ int main()
                 direction = -direction;
             }
 
-            if (IsKeyDown(KEY_D) && user.x < width) {
-                user.x += 10;
+            if (IsKeyDown(KEY_D) && user.isLeftOf(width)) {
+                user.moveRight(10);
             }
-            else if (IsKeyDown(KEY_A) && user.x > 0) {
-                user.x -= 10;
+            else if (IsKeyDown(KEY_A) && user.isRightOf(0)) {
+                user.moveLeft(10);
             }
 
             // Game logic ends

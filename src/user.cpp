@@ -8,3 +8,23 @@ Bounds User::getBounds() const
         y - size,
         y + size};
 }
+
+void User::moveLeft(int amount)
+{
+    x -= amount;
+}
+
+void User::moveRight(int amount)
+{
+    x += amount;
+}
+
+bool User::isLeftOf(int pos) const
+{
+    return (x + size) < pos;
+}
+
+bool User::isRightOf(int pos) const
+{
+    return (x - size) > pos;
+}

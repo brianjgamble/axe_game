@@ -10,6 +10,11 @@ public:
 
     [[nodiscard]] Bounds getBounds() const;
 
+    void moveLeft(int amount);
+    void moveRight(int amount);
+    [[nodiscard]] bool isLeftOf(int pos) const;
+    [[nodiscard]] bool isRightOf(int pos) const;
+
     int size;
     int x;
     int y;
