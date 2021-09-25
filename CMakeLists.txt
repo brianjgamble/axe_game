@@ -24,8 +24,9 @@ endif ()
 # Retrieve Catch2
 FetchContent_Declare(
         Catch2
-        GIT_REPOSITORY https://github.com/catchorg/Catch2.git
-        GIT_TAG v2.13.7)
+        GIT_REPOSITORY "https://github.com/catchorg/Catch2.git"
+        GIT_TAG "e8e28ba"
+)
 
 FetchContent_MakeAvailable(Catch2)
 

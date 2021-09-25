@@ -1,5 +1,5 @@
 #include "../src/player.h"
-#include <catch2/catch.hpp>
+#include <catch2/catch_all.hpp>
 
 TEST_CASE("A user has a boundary and can be moved")
 {
