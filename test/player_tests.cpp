@@ -1,7 +1,7 @@
 #include "../src/player.h"
 #include <catch2/catch_all.hpp>
 
-TEST_CASE("A user has a boundary and can be moved")
+TEST_CASE("A player has a boundary and can be moved")
 {
     Player player{35, 100, 50};
     const Bounds& bounds = player.getBounds();

@@ -1,5 +1,5 @@
 set(TEST_SOURCES
-        user_tests.cpp)
+        player_tests.cpp)
 
 add_executable(tests ${TEST_SOURCES})
 target_link_libraries(tests
