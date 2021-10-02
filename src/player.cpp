@@ -1,5 +1,8 @@
 #include "player.h"
 
+Player::Player(int size, int x, int y) :
+    size(size), x(x), y(y) {}
+
 Bounds Player::getBounds() const
 {
     return Bounds{

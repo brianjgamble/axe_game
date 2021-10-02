@@ -5,8 +5,7 @@
 
 class Player {
 public:
-    Player(int size, int x, int y) :
-        size(size), x(x), y(y) {}
+    Player(int size, int x, int y);
 
     [[nodiscard]] Bounds getBounds() const;
 
@@ -20,4 +19,4 @@ public:
     int y;
 };
 
-#endif//AXE_GAME_PROJECT_PLAYER_H
+#endif
