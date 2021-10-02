@@ -1,5 +1,6 @@
 set(SOURCES
-        player.cpp)
+        player.cpp player.h
+        axe.cpp axe.h)
 
 add_library(sources_lib ${SOURCES})
 add_executable(axe_game main.cpp)

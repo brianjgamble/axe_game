@@ -1,15 +1,6 @@
+#include "axe.h"
 #include "player.h"
 #include <raylib.h>
-
-class Axe {
-public:
-    Axe(int size, int x, int y) :
-        size(size), x(x), y(y) {}
-
-    int size;
-    int x;
-    int y;
-};
 
 int width{800};
 int height{450};
