@@ -1,6 +1,7 @@
 set(TEST_SOURCES
         player_tests.cpp
-        axe_tests.cpp)
+        axe_tests.cpp
+        collisional_test.cpp)
 
 add_executable(tests ${TEST_SOURCES})
 target_link_libraries(tests

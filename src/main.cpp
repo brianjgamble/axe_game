@@ -49,13 +49,7 @@ Movement processInput()
 void update(Player& player, Movement movement, Axe& axe)
 {
     if (!collision_with_axe) {
-        const Bounds& playerBounds = player.getBounds();
-        const Bounds& axeBounds    = axe.getBounds();
-        collision_with_axe =
-            (axeBounds.lower >= playerBounds.upper) &&
-            (axeBounds.upper <= playerBounds.lower) &&
-            (axeBounds.right >= playerBounds.left) &&
-            (axeBounds.left <= playerBounds.right);
+        collision_with_axe = player.collides_with(axe);
 
         if (direction > 0) {
             axe.moveDown(direction);
