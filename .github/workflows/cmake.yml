@@ -25,7 +25,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name:  Add Linux dependencies
+      - name:  Add Dependencies
         run:   |
                if [ "$RUNNER_OS" == "Linux" ]; then
                    sudo apt-get update -qq
