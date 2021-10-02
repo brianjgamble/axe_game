@@ -6,9 +6,9 @@ Axe::Axe(int size, int x, int y) :
 Bounds Axe::getBounds() const
 {
     return Bounds{
-        x - size,
+        x,
         x + size,
-        y - size,
+        y,
         y + size};
 }
 
@@ -24,7 +24,7 @@ void Axe::moveDown(int amount)
 
 bool Axe::isAbove(int pos) const
 {
-    return (y - size) < pos;
+    return y < pos;
 }
 
 bool Axe::isBelow(int pos) const

@@ -1,5 +1,6 @@
 #include "axe.h"
 #include "player.h"
+#include <cmath>
 #include <raylib.h>
 
 int width{800};
@@ -47,24 +48,24 @@ Movement processInput()
 
 void update(Player& player, Movement movement, Axe& axe)
 {
-    // update the edges
-    int l_axe_x = axe.x;
-    int r_axe_x = axe.x + axe.size;
-    int u_axe_y = axe.y;
-    int b_axe_y = axe.y + axe.size;
-
-    // update collision with axe
-    const Bounds& userBounds = player.getBounds();
-    collision_with_axe =
-        (b_axe_y >= userBounds.upper) &&
-        (u_axe_y <= userBounds.lower) &&
-        (r_axe_x >= userBounds.left) &&
-        (l_axe_x <= userBounds.right);
-
     if (!collision_with_axe) {
-        axe.y += direction;
-        if (axe.y > height || axe.y < 0) {
-            direction = -direction;
+        const Bounds& playerBounds = player.getBounds();
+        const Bounds& axeBounds    = axe.getBounds();
+        collision_with_axe =
+            (axeBounds.lower >= playerBounds.upper) &&
+            (axeBounds.upper <= playerBounds.lower) &&
+            (axeBounds.right >= playerBounds.left) &&
+            (axeBounds.left <= playerBounds.right);
+
+        if (direction > 0) {
+            axe.moveDown(direction);
+            if (axe.isBelow(height))
+                direction = -direction;
+        }
+        else {
+            axe.moveUp(abs(direction));
+            if (axe.isAbove(0))
+                direction = -direction;
         }
 
         if (movement == Right && player.isLeftOf(width)) {
