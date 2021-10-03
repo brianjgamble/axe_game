@@ -1,4 +1,5 @@
 #include "axe.h"
+#include "input_handler.h"
 #include "player.h"
 #include <cmath>
 #include <raylib.h>
@@ -8,12 +9,9 @@ int height{450};
 bool collision_with_axe{false};
 int direction{10};
 
-enum Movement { Left,
-                Right,
-                Stop };
+InputHandler handler{width};
 
-Movement processInput();
-void update(Player& player, Movement movement, Axe& axe);
+void update(Player& player, Command* movement, Axe& axe);
 void render(Player& player, Axe& axe);
 
 int main()
@@ -26,8 +24,8 @@ int main()
     SetTargetFPS(60);
 
     while (!WindowShouldClose()) {
-        Movement movement = processInput();
-        update(player, movement, axe);
+        auto* command = handler.handleInput();
+        update(player, command, axe);
         render(player, axe);
     }
 
@@ -36,17 +34,7 @@ int main()
     return 0;
 }
 
-Movement processInput()
-{
-    if (IsKeyDown(KEY_D))
-        return Right;
-    else if (IsKeyDown(KEY_A))
-        return Left;
-    else
-        return Stop;
-}
-
-void update(Player& player, Movement movement, Axe& axe)
+void update(Player& player, Command* movement, Axe& axe)
 {
     if (!collision_with_axe) {
         collision_with_axe = player.collides_with(axe);
@@ -62,12 +50,8 @@ void update(Player& player, Movement movement, Axe& axe)
                 direction = -direction;
         }
 
-        if (movement == Right && player.isLeftOf(width)) {
-            player.moveRight(10);
-        }
-        else if (movement == Left && player.isRightOf(0)) {
-            player.moveLeft(10);
-        }
+        if (movement)
+            movement->execute(player);
     }
 }
 

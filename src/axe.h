@@ -8,8 +8,8 @@ public:
     Axe(int size, int x, int y);
 
     [[nodiscard]] Bounds getBounds() const;
-    void moveUp(int amount);
-    void moveDown(int amount);
+    void moveUp(int amount) override;
+    void moveDown(int amount) override;
 
     int size;
     int x;
