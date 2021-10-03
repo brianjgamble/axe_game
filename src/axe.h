@@ -1,17 +1,15 @@
 #ifndef AXE_GAME_PROJECT_AXE_H
 #define AXE_GAME_PROJECT_AXE_H
 
-#include "collisional.h"
+#include "component.h"
 
-class Axe : public Collisional {
+class Axe : public Component {
 public:
     Axe(int size, int x, int y);
 
     [[nodiscard]] Bounds getBounds() const;
     void moveUp(int amount);
     void moveDown(int amount);
-    [[nodiscard]] bool isAbove(int pos) const;
-    [[nodiscard]] bool isBelow(int pos) const;
 
     int size;
     int x;

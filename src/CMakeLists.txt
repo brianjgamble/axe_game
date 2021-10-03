@@ -1,7 +1,7 @@
 set(SOURCES
         player.cpp player.h
         axe.cpp axe.h
-        collisional.cpp collisional.h)
+        component.cpp component.h)
 
 add_library(sources_lib ${SOURCES})
 add_executable(axe_game main.cpp)
