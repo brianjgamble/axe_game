@@ -12,8 +12,7 @@ class Component {
 public:
     Component(int left, int right, int upper, int lower);
 
-    bool collides_with(const Component& that);
-
+    [[nodiscard]] bool collides_with(const Component& that) const;
     [[nodiscard]] bool isAbove(int pos) const;
     [[nodiscard]] bool isBelow(int pos) const;
     [[nodiscard]] bool isLeftOf(int pos) const;

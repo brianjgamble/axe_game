@@ -8,7 +8,7 @@ Component::Component(int left, int right, int upper, int lower)
     bounds.lower = lower;
 }
 
-bool Component::collides_with(const Component& that)
+bool Component::collides_with(const Component& that) const
 {
     return (this->bounds.lower >= that.bounds.upper) &&
            (this->bounds.upper <= that.bounds.lower) &&
