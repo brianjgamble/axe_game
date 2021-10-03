@@ -11,6 +11,7 @@ struct Bounds {
 class Component {
 public:
     Component(int left, int right, int upper, int lower);
+    virtual ~Component() = default;
 
     [[nodiscard]] bool collides_with(const Component& that) const;
     [[nodiscard]] bool isAbove(int pos) const;
