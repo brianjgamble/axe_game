@@ -3,6 +3,25 @@
 #include "move_right_command.h"
 #include <raylib.h>
 
+namespace {
+    bool keyLeft()
+    {
+        return IsKeyDown(KEY_A);
+    }
+    bool keyRight()
+    {
+        return IsKeyDown(KEY_D);
+    }
+    bool gamePadLeft()
+    {
+        return IsGamepadAvailable(0) && IsGamepadButtonDown(0, GAMEPAD_BUTTON_LEFT_FACE_LEFT);
+    }
+    bool gamePadRight()
+    {
+        return IsGamepadAvailable(0) && IsGamepadButtonDown(0, GAMEPAD_BUTTON_LEFT_FACE_RIGHT);
+    }
+}
+
 InputHandler::InputHandler(int width)
 {
     moveLeft  = new MoveLeftCommand{0};
@@ -17,9 +36,9 @@ InputHandler::~InputHandler()
 
 Command* InputHandler::handleInput()
 {
-    if (IsKeyDown(KEY_A))
+    if (keyLeft() || gamePadLeft())
         return moveLeft;
-    else if (IsKeyDown(KEY_D))
+    else if (keyRight() || gamePadRight())
         return moveRight;
     else
         return nullptr;
